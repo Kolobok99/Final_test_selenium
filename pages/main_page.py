@@ -1,10 +1,9 @@
+from selenium.webdriver.common.by import By
 
-class BasePage:
-    """ Base Page """
+from .base_page import BasePage
 
-    def __init__(self, browser, url):
-        self.browser = browser
-        self.url = url
+class MainPage(BasePage):
 
-    def open(self):
-        self.browser.get(self.url)
+    def go_to_login_page(self):
+        login_link = self.browser.find_element(By.CSS_SELECTOR, "#login_link")
+        login_link.click()
