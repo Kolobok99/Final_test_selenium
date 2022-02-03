@@ -4,9 +4,8 @@ from .base_page import BasePage
 
 
 class ProductPage(BasePage):
-    """Класс страницы товара"""
 
-    def should_be_shell_coders_page(self, product_url_name):
+    def should_be_desired_page(self, product_url_name):
         assert product_url_name in self.browser.current_url, \
         f"Это не страницы 'The shellcoder's handbook'\n Это {self.browser.current_url}"
 
@@ -25,11 +24,12 @@ class ProductPage(BasePage):
     def added_message(self, expected_message):
         message = self.browser.find_element(*ProductPageLocators.IN_STOCK_MESSAGE)
         message_text = message.text
-        assert expected_message in message_text, f"Message: {message_text=}"
+        assert expected_message == message_text, \
+            f"Message: {message_text=}"
 
     def added_total_price(self, expected_total_price):
         total_price = self.browser.find_element(*ProductPageLocators.TOTAL_PRICE_MESSAGE)
-        total_price_text = "Your basket total is now £" + total_price.text
+        total_price_text = total_price.text
         assert expected_total_price in total_price_text,\
             f"total_price: {total_price_text}"
 
