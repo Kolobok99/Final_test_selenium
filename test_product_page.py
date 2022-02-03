@@ -1,11 +1,8 @@
-import time
 import faker
 import pytest
 
-from .pages.login_page import LoginPage
 from .pages.basket_page import BasketPage
-from .pages.main_page import MainPage
-from .pages.locators import ProductPageLocators
+from .pages.login_page import LoginPage
 from .pages.product_page import ProductPage
 
 LINK = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
@@ -37,7 +34,6 @@ class TestUserAddToBasketFromProductPage:
         page.message_that_product_added_to_cart()
 
     def test_user_cant_see_success_message(self, browser):
-
         # 1. Открываем стр. товара
         page = ProductPage(browser, LINK)
         page.open()
@@ -58,8 +54,8 @@ def test_guest_can_add_product_to_basket(browser):
     # 3. Проверить сообщения о добавлении товара
     page.message_that_product_added_to_cart()
 
-def test_guest_cant_see_success_message(browser):
 
+def test_guest_cant_see_success_message(browser):
     # 1. Открываем стр. товара
     page = ProductPage(browser, LINK)
     page.open()
@@ -69,7 +65,6 @@ def test_guest_cant_see_success_message(browser):
 
 @pytest.mark.xfail
 def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
-
     # 1. Открываем стр. товара
     page = ProductPage(browser, LINK)
     page.open()
@@ -82,7 +77,6 @@ def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
 
 @pytest.mark.xfail
 def test_message_disappeared_after_adding_product_to_basket(browser):
-
     # 1. Открываем стр. товара
     page = ProductPage(browser, LINK)
     page.open()
@@ -92,16 +86,19 @@ def test_message_disappeared_after_adding_product_to_basket(browser):
     # 3. Проверяем, что нет сообщения
     page.should_dissapear_of_success_message()
 
+
 def test_guest_should_see_login_link_on_product_page(browser):
     page = ProductPage(browser, LINK)
     page.open()
     page.should_be_login_link()
+
 
 @pytest.mark.need_review
 def test_guest_can_go_to_login_page_from_product_page(browser):
     page = ProductPage(browser, LINK)
     page.open()
     page.go_to_login_page()
+
 
 @pytest.mark.need_review
 def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
@@ -111,6 +108,3 @@ def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
 
     page.there_is_text_with_cart_empty()
     page.no_products_in_items()
-
-
-

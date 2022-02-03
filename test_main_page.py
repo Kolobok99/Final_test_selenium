@@ -1,10 +1,11 @@
 import pytest
 
-from .pages.main_page import MainPage
-from .pages.login_page import LoginPage
 from .pages.basket_page import BasketPage
+from .pages.login_page import LoginPage
+from .pages.main_page import MainPage
 
 LINK = "http://selenium1py.pythonanywhere.com"
+
 
 @pytest.mark.login_guest
 class TestLoginMainPage():
@@ -24,7 +25,6 @@ class TestLoginMainPage():
 
 
 def test_guest_cant_see_product_in_basket_opened_from_main_page(browser):
-
     page = MainPage(browser, LINK)
     page.open()
     page.go_to_cart_page()
@@ -34,4 +34,3 @@ def test_guest_cant_see_product_in_basket_opened_from_main_page(browser):
     basket_page.should_be_basket_url()
     basket_page.there_is_text_with_cart_empty()
     basket_page.no_products_in_items()
-

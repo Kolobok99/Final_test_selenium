@@ -1,13 +1,13 @@
-from .locators import CartPageLocators
 from .base_page import BasePage
-from .login_page import LoginPage
+from .locators import CartPageLocators
+
 
 class BasketPage(BasePage):
     """Test the Basket page"""
 
     def should_be_basket_url(self):
         text = 'basket'
-        assert self.browser.current_url.endswith("/basket/"),\
+        assert self.browser.current_url.endswith("/basket/"), \
             f"This is not {text} URL."
 
     def no_products_in_items(self):
@@ -18,6 +18,3 @@ class BasketPage(BasePage):
         empty_text = self.browser.find_element(*CartPageLocators.CART_EMPTY).text
         assert "empty" in empty_text, \
             "There is not 'empty' in text!!!"
-
-
-

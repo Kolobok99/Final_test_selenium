@@ -1,6 +1,5 @@
-import time
-from .locators import ProductPageLocators
 from .base_page import BasePage
+from .locators import ProductPageLocators
 
 
 class ProductPage(BasePage):
@@ -26,7 +25,7 @@ class ProductPage(BasePage):
     def added_message(self):
         product_name_text = self.browser.find_element(
             *ProductPageLocators.PRODUCT_NAME).text
-        expected_message =  "×\n" + product_name_text + " has been added to your basket."
+        expected_message = "×\n" + product_name_text + " has been added to your basket."
 
         message_text = self.browser.find_element(*ProductPageLocators.IN_STOCK_MESSAGE).text
 
@@ -40,7 +39,7 @@ class ProductPage(BasePage):
         total_price_text = self.browser.find_element(
             *ProductPageLocators.TOTAL_PRICE_MESSAGE).text
 
-        assert expected_total_price_text in total_price_text,\
+        assert expected_total_price_text in total_price_text, \
             f"total_price: {total_price_text}"
 
     def should_not_be_success_message(self):
