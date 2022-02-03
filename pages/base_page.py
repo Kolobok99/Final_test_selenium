@@ -19,6 +19,11 @@ class BasePage:
     def open(self):
         self.browser.get(self.url)
 
+    def should_be_desired_page(self, link):
+        url_name = link.split('/')[5]
+        assert url_name in self.browser.current_url, \
+        f"Это не та страница\n Это {self.browser.current_url}"
+
     def go_to_cart_page(self):
         link = self.browser.find_element(*BasePageLocators.CART_LINK)
         link.click()

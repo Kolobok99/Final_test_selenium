@@ -5,6 +5,11 @@ from .login_page import LoginPage
 class BasketPage(BasePage):
     """Test the Basket page"""
 
+    def should_be_basket_url(self):
+        text = 'basket'
+        assert self.browser.current_url.endswith("/basket/"),\
+            f"This is not {text} URL."
+
     def no_products_in_items(self):
         assert self.is_element_present(*CartPageLocators.CART_EMPTY), \
             "There is not emty_element!!!"
